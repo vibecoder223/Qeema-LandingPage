@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { useIsoLayoutEffect } from "@/components/motion/useIsoLayoutEffect";
+import { useState } from "react";
+import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import type { Messages } from "@/messages";
 
 /**
@@ -10,41 +10,12 @@ import type { Messages } from "@/messages";
  * Panel 0 says "not eligible" out loud. That is the honesty the spec
  * removed the prose limits section in favour of demonstrating.
  *
- * The redirect rows stagger in on first view. A hidden panel never
- * intersects, so switching to it settles its rows immediately.
+ * Entrance stagger was removed on request — both panels render settled.
+ * The toggle itself stays interactive; that is not an animation, it is
+ * the state the screen exists to show.
  */
 export function ScreenVerdict({ t }: { t: Messages }) {
   const [panel, setPanel] = useState<0 | 1>(0);
-  const [rowsIn, setRowsIn] = useState(true);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useIsoLayoutEffect(() => {
-    const node = ref.current;
-    if (!node) return;
-
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced || !("IntersectionObserver" in window)) return;
-
-    setRowsIn(false);
-
-    const timers: ReturnType<typeof setTimeout>[] = [];
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          io.disconnect();
-          timers.push(setTimeout(() => setRowsIn(true), 420));
-        }
-      },
-      { threshold: 0.3 },
-    );
-
-    io.observe(node);
-    return () => {
-      io.disconnect();
-      timers.forEach(clearTimeout);
-    };
-  }, []);
 
   const rows = [
     { title: t.tr1, when: t.tr1d, tag: t.tg1 },
@@ -52,7 +23,7 @@ export function ScreenVerdict({ t }: { t: Messages }) {
   ];
 
   return (
-    <div ref={ref}>
+    <div>
       <div className={`vt-toggle${panel === 1 ? " b" : ""}`} role="tablist">
         <i className="pill" aria-hidden="true" />
         <button
@@ -91,18 +62,12 @@ export function ScreenVerdict({ t }: { t: Messages }) {
           </div>
           <div className="verdict ok" style={{ marginTop: 12 }}>
             <i className="ic dir" aria-hidden="true">
-              →
+              <ArrowIcon />
             </i>
             <div>
               <h4>{t.v2h}</h4>
-              {rows.map((row, i) => (
-                <div
-                  key={row.title}
-                  className={`tender-row${rowsIn || panel === 1 ? " in" : ""}`}
-                  style={
-                    rowsIn ? { transitionDelay: `${i * 180}ms` } : undefined
-                  }
-                >
+              {rows.map((row) => (
+                <div key={row.title} className="tender-row in">
                   <span className="ti">
                     <b>{row.title}</b>
                     {row.when}
