@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Manrope, Rubik } from "next/font/google";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
+import { SmoothAnchor } from "@/components/motion/SmoothAnchor";
 import { dirOf, isLocale, locales, SITE, type Locale } from "@/lib/i18n";
 import { getMessages } from "@/messages";
 import "../globals.css";
@@ -77,7 +78,10 @@ export default async function LocaleLayout({
       dir={dirOf(locale as Locale)}
       className={`${manrope.variable} ${rubik.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        {children}
+        <SmoothAnchor />
+      </body>
     </html>
   );
 }
