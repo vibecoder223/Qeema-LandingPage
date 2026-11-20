@@ -178,7 +178,7 @@ const en = {
     "<b>No.</b> Qeema is not an assessor and holds no delegated authority. Any estimate it shows is labelled unaudited, and the certifying body remains the only source of a real score.",
   fq2: "We are not in the energy sector. Does local content apply to us?",
   fa2Rich:
-    "<b>Yes, from 2027.</b> According to the Ministry of Finance, from the beginning of 2027 you need an ICV certificate to bid on government tenders, whatever your sector. Without one you can still bid on private tenders. Qeema shows where your score stands and the steps to get certified.",
+    "<b>Yes.</b> According to the Ministry of Finance, from the beginning of 2027 you need an ICV certificate to bid on government tenders, whatever your sector. Without one you can still bid on private tenders. Qeema shows where your score stands and the steps to get certified.",
   fq3: "Where do the drafted answers come from?",
   fa3Rich:
     "From your own previous submissions. Every drafted sentence names the bid it came from, the section, and the date. Where there is no source, Qeema leaves the field empty and says so.",
