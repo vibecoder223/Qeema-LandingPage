@@ -41,12 +41,6 @@ export function AppFrame({
       </div>
       <div className="app">
         <aside className="side">
-          <div className="org">
-            <div className="m" aria-hidden="true">
-              ق
-            </div>
-            <div className="nm">Al Rayyan Trading</div>
-          </div>
           <StepRail steps={steps} active={active} />
         </aside>
         <div className="main">

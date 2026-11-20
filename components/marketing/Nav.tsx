@@ -20,8 +20,8 @@ export function Nav({ t, locale }: { t: Messages; locale: Locale }) {
         <span className="wm">Qeema</span>
       </div>
       <div className="nav-links">
-        <a href="#reads">{t.n1}</a>
-        <a href="#coverage">{t.n2}</a>
+        <a href="#how">{t.n1}</a>
+        <a href="#icv">{t.n2}</a>
         <a href="#faq">{t.n4}</a>
         <a href="#start">{t.n3}</a>
       </div>

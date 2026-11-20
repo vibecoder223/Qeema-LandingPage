@@ -226,15 +226,19 @@ html[dir="rtl"] footer .in { direction: ltr; }
 .chrome .d { width: 9px; height: 9px; border-radius: 50%; background: var(--rule); }
 /* LOGICAL — was margin-left. */
 .chrome .u { margin-inline-start: 14px; font-size: 11.5px; font-weight: 500; color: var(--ink-4); }
-.app { display: flex; min-height: 262px; }
-/* LOGICAL — was border-right. */
-.side { width: 164px; flex-shrink: 0; background: var(--canvas); border-inline-end: 1px solid var(--rule-soft); padding: 15px 10px; }
-.org { display: flex; align-items: center; gap: 9px; padding: 0 6px 13px; margin-bottom: 10px; border-bottom: 1px solid var(--rule-soft); }
+/* Steps run across the top (user, 2026-11-20), not down a sidebar. */
+.app { display: flex; flex-direction: column; min-height: 262px; }
+.side { display: flex; align-items: center; gap: 14px; background: var(--canvas); border-bottom: 1px solid var(--rule-soft); padding: 8px 12px; overflow-x: auto; scrollbar-width: none; }
+.side::-webkit-scrollbar { display: none; }
+/* Let the frames shrink to the column; the step bar scrolls inside instead of widening the page on phones. */
+.split > *, .hero-shot, .browser, .app, .side { min-width: 0; }
+.org { display: flex; align-items: center; gap: 8px; flex-shrink: 0; padding-inline-end: 14px; border-inline-end: 1px solid var(--rule-soft); }
 .org .m { width: 23px; height: 23px; border-radius: 7px; background: var(--brand); color: var(--on-brand); display: grid; place-items: center; font-family: var(--arabic); font-size: 12px; font-weight: 500; flex-shrink: 0; }
 .org .nm { font-size: 11.5px; font-weight: 600; color: var(--ink); }
-.side-flow { display: flex; flex-direction: column; gap: 2px; }
+/* auto margins centre the steps but still let them scroll from the start on narrow screens */
+.side-flow { display: flex; align-items: center; gap: 2px; flex-shrink: 0; margin-inline: auto; }
 .flow-item {
-  display: flex; align-items: center; gap: 9px; font-size: 12px; padding: 7px 8px;
+  display: flex; align-items: center; gap: 7px; font-size: 12px; padding: 5px 9px; white-space: nowrap;
   border-radius: 8px; color: var(--ink-4);
   transition: background 220ms var(--ease-out), color 220ms var(--ease-out);
 }
@@ -336,11 +340,13 @@ html[dir="rtl"] footer .in { direction: ltr; }
 .src { font-size: 11px; color: var(--ink-4); line-height: 1.5; }
 
 /* ── screen C · verdict ── */
-.vt-toggle { display: inline-flex; position: relative; background: var(--panel); border-radius: 999px; padding: 3px; margin-bottom: 18px; align-self: flex-start; }
+/* Two equal columns so the 50%-wide pill always matches the button under it
+   (the labels differ in length, which made the pill overhang one and miss the other). */
+.vt-toggle { display: inline-grid; grid-template-columns: 1fr 1fr; position: relative; background: var(--panel); border: 1px solid var(--rule-soft); border-radius: 999px; padding: 3px; margin-bottom: 18px; align-self: flex-start; }
 /* LOGICAL — was left: 3px. */
 .vt-toggle .pill {
   position: absolute; top: 3px; bottom: 3px; inset-inline-start: 3px; width: calc(50% - 3px);
-  background: var(--surface); border-radius: 999px; box-shadow: var(--shad-sm);
+  background: var(--surface); border-radius: 999px; box-shadow: 0 1px 2px oklch(0.2 0.03 240 / 0.08);
   transition: transform 260ms var(--ease-out);
 }
 .vt-toggle.b .pill { transform: translateX(100%); }
@@ -349,7 +355,7 @@ html[dir="rtl"] .vt-toggle.b .pill { transform: translateX(-100%); }
 .vt-toggle button {
   position: relative; z-index: 1; border: none; background: transparent; cursor: pointer;
   font-family: inherit; font-size: 12.5px; font-weight: 600; color: var(--ink-3);
-  padding: 8px 18px; border-radius: 999px; transition: color 200ms var(--ease-out);
+  padding: 7px 16px; border-radius: 999px; text-align: center; white-space: nowrap; transition: color 200ms var(--ease-out);
 }
 .vt-toggle button.on { color: var(--ink); }
 .vt-panel { display: none; opacity: 0; transform: translateY(4px); transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out); }
@@ -543,16 +549,81 @@ footer .fmeta { display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 11.5px
 footer .fmeta a { color: inherit; text-decoration: none; transition: color 160ms var(--ease-out); }
 footer .fmeta a:hover { color: var(--ink-2); }
 
+/* ═════════ 2 · how it works ═════════ */
+.steps { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.steps .lb { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-4); margin-bottom: 18px; }
+.steps-row { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+.steps-row li { display: flex; flex-direction: column; gap: 4px; }
+.steps-row .n { width: 24px; height: 24px; border-radius: 50%; background: var(--tint); color: var(--deep); display: grid; place-items: center; font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+.steps-row b { font-size: 15px; font-weight: 700; color: var(--ink); }
+.steps-row .d { font-size: 13.5px; color: var(--ink-3); line-height: 1.45; }
+@media (max-width: 940px) { .steps-row { grid-template-columns: 1fr 1fr; gap: 22px; } }
+@media (max-width: 480px) { .steps-row { grid-template-columns: 1fr; } }
+
+/* ── screen E · ICV estimate. Same tokens and shapes as IcvSimulator.vue in the app. ── */
+.vs { display: flex; flex-direction: column; gap: 4px; }
+.vs-est { background: var(--surface); border: 1.5px dashed var(--rule); border-radius: 16px; padding: 14px 16px 12px; }
+.vs-top { display: flex; align-items: flex-end; gap: 14px; flex-wrap: wrap; }
+.vs-lb { display: block; font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-4); }
+.vs-pct { display: block; font-size: 36px; font-weight: 800; letter-spacing: -.045em; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; margin-top: 4px; direction: ltr; }
+.vs-pct small { font-size: 18px; font-weight: 700; color: var(--ink-3); margin-inline-start: 2px; }
+.vs-say { flex: 1; min-width: 160px; font-size: 12px; color: var(--ink-2); line-height: 1.45; padding-bottom: 3px; }
+.vs-track { position: relative; display: flex; height: 26px; border-radius: 8px; background: var(--panel); margin-top: 26px; }
+.vs-seg, .vs-out { height: 100%; display: grid; place-items: center; overflow: hidden; white-space: nowrap; font-size: 10.5px; font-weight: 800; color: var(--on-brand); }
+.vs-seg:first-child { border-start-start-radius: 8px; border-end-start-radius: 8px; }
+.vs-out { color: var(--ink-4); border-start-end-radius: 8px; border-end-end-radius: 8px; }
+.vs .k-a { background: var(--deep); } .vs .k-b { background: var(--brand); } .vs .k-c { background: var(--band-ink); } .vs .k-d { background: var(--tint-br); color: var(--deep); }
+.vs-avg { position: absolute; top: -5px; bottom: -5px; width: 2px; background: var(--ink); border-radius: 2px; box-shadow: 0 0 0 1.5px var(--surface); z-index: 2; }
+.vs-avg i { position: absolute; bottom: calc(100% + 2px); inset-inline-start: 50%; transform: translateX(-50%); font-style: normal; font-size: 10px; font-weight: 700; color: var(--ink-3); white-space: nowrap; }
+html[dir="rtl"] .vs-avg i { transform: translateX(50%); }
+.vs-legend { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-top: 10px; font-size: 11.5px; color: var(--ink-3); align-items: center; }
+.vs-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.vs-legend b { color: var(--ink); font-variant-numeric: tabular-nums; direction: ltr; }
+.vs-sw { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+.vs-sw.in { background: var(--deep); } .vs-sw.out { background: var(--panel); box-shadow: inset 0 0 0 1px var(--rule); }
+.vs-adv { padding-top: 10px; }
+.vs-adv h4 { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; letter-spacing: -.015em; color: var(--ink); margin-bottom: 4px; }
+.vs-n { width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; font-size: 10.5px; font-weight: 800; background: var(--tint); color: var(--deep); flex-shrink: 0; }
+.vs-adv ol { list-style: none; }
+.vs-adv li { display: grid; grid-template-columns: 46px minmax(0, 1fr); gap: 12px; align-items: start; padding: 10px 0; border-top: 1px solid var(--rule-soft); }
+.vs-gain { font-size: 16px; font-weight: 800; letter-spacing: -.02em; color: var(--deep); font-variant-numeric: tabular-nums; text-align: end; line-height: 1.15; direction: ltr; }
+.vs-tag { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--tint); color: var(--deep); margin-bottom: 4px; }
+.vs-tag.new { background: var(--panel); color: var(--ink-3); }
+.vs-adv b { display: block; font-size: 12.5px; color: var(--ink); line-height: 1.4; }
+.vs-adv .s { display: block; font-size: 11.5px; color: var(--ink-3); margin-top: 2px; line-height: 1.45; }
+.vs-note { font-size: 10.5px; color: var(--ink-4); line-height: 1.45; padding-top: 6px; border-top: 1px solid var(--rule-soft); }
+
+/* 5b · the 2027 ICV callout */
+.icv-call { margin: 18px 0 4px; padding: 14px 16px; border-radius: 12px; background: var(--tint); border: 1px solid var(--tint-br); }
+.icv-call p { font-size: 14.5px; line-height: 1.55; color: var(--ink-2); }
+.icv-call p b { color: var(--deep); font-weight: 700; }
+.icv-call .src { display: block; margin-top: 6px; font-size: 11.5px; color: var(--ink-4); }
+
+/* screen C · verdict, evidence and go / no-go (copies VerdictTab.vue) */
+.vq { font-size: 13.5px; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+.verdict .vfine { margin-top: 6px; font-size: 11px; color: var(--ink-4); }
+.ev { margin-top: 12px; border: 1px solid var(--rule-soft); border-radius: 12px; padding: 4px 14px; }
+.ev-h { font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-4); padding: 8px 0 4px; }
+.ev-r { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-top: 1px solid var(--rule-soft); font-size: 12.5px; color: var(--ink-3); }
+.ev-r b { color: var(--ink); font-weight: 600; text-align: end; }
+.decl { margin-top: 12px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 10px 14px; border-radius: 12px; background: var(--panel); }
+.decl b { font-size: 13px; color: var(--ink); }
+.decb { margin-inline-start: auto; display: flex; gap: 6px; }
+.mbtn { font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 8px; border: 1px solid var(--rule); background: var(--surface); color: var(--ink-2); white-space: nowrap; }
+.mbtn.p { background: var(--brand); border-color: var(--brand); color: var(--on-brand); }
+.cl-item .ct { white-space: nowrap; }
+
 /* ═════════ reveal ═════════ */
-.rv { opacity: 0; transform: translateY(20px); transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out); }
-.rv.in { opacity: 1; transform: none; }
+/* Always visible. The old version hid every section (opacity 0) until a scroll observer
+   fired, so screenshots, full-page captures and slow loads showed empty blocks. */
+.rv { opacity: 1; transform: none; }
 
 /* ═════════ responsive ═════════ */
 @media (max-width: 940px) {
   .split, .split.flip { grid-template-columns: 1fr; }
   .split.flip .split-txt { order: 1; }
   .split.flip .split-shot { order: 2; }
-  .side { display: none; }
+  .org .nm { display: none; }
   .irow { grid-template-columns: 1fr; gap: 6px; }
   .irow.head { display: none; }
   .money-list li { grid-template-columns: 1fr; }

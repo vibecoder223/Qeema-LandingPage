@@ -9,25 +9,25 @@
  */
 const en = {
   meta: {
-    title: "Qeema — Qatari tender eligibility and bid drafting",
+    title: "Qeema — Tender drafting for Qatari bid teams",
     description:
-      "Qeema reads your Qatari tender, drafts the response from bids you already won, and tells you what you are entitled to claim. Run one tender, free.",
-    ogTitle: "Qeema — Qatari tender eligibility and bid drafting",
+      "Qeema reads your Qatari tender, drafts the response from your previous bids, and checks that you meet its ICV requirement. Run one tender, free.",
+    ogTitle: "Qeema — Tender drafting for Qatari bid teams",
     ogDescription:
-      "Reads the tender. Drafts the response. Tells you what you can claim.",
+      "Reads the tender. Drafts the response. Checks you meet the ICV requirement.",
   },
 
   // 0 · nav
   n1: "How it works",
-  n2: "What it covers",
+  n2: "ICV advisor",
   n4: "FAQ",
   n3: "Get started",
   cta: "Run one tender",
   cta2: "See what it reads",
 
   // 1 · hero
-  h1Rich: "Bid in <em>an afternoon</em>. Compliant before you submit.",
-  hsub: "Qeema drafts your response from bids you already won, then checks it against Qatar's local-content rules.",
+  h1Rich: "Your proposal, done in <em>3 hours</em>, not 3 weeks.",
+  hsub: "Every answer drafted from your previous bids and reviewed by your team, plus a check that you meet the ICV requirement.",
   rev: "One tender. No integration. No credit card.",
 
   // app frame · step rail, shared by all four screens
@@ -39,20 +39,20 @@ const en = {
   // screen A · dropzone
   c1: "New tender",
   dz1: "Drop the tender document",
-  dz2: "Arabic or English. Straight off the portal.",
-  dzFile: "RFP-2026-0148-Ashghal.pdf",
+  dz2: "PDF, Word or text · Arabic or English · native or scanned",
+  dzFile: "QE-LNG-RFP-2026-0148.pdf",
   dzMeta: "2.4 MB · 87 pages · العربية",
 
-  // 2 · coverage strip
-  s2lb: "Reads against",
-  s2a: "Tawteen ICV",
-  s2ai: "QatarEnergy, energy sector",
-  s2b: "Cabinet Resolution 11 of 2022",
-  s2bi: "Ministry of Finance, government-wide",
-  s2c: "Law 24 of 2015",
-  s2ci: "Executive Regulations, as amended",
-  s2d: "Classification grades",
-  s2di: "Entry gates by tender value",
+  // 2 · process strip
+  s2lb: "How it works",
+  p1h: "Upload the tender",
+  p1p: "The PDF from the portal, Arabic or English.",
+  p2h: "Every question listed",
+  p2p: "Including the ones buried in the annexes.",
+  p3h: "Answers drafted",
+  p3p: "From your past bids, with the source shown.",
+  p4h: "Review and submit",
+  p4p: "Owners, sign-off and an ICV check before export.",
 
   // 3 · what it pulls out
   s3eb: "The ceiling",
@@ -60,22 +60,19 @@ const en = {
   s3p: "That is not a preference. It is how long it takes to read 87 pages, find every question buried in the annexes, and work out which ones you have answered before.",
   s3l1Rich:
     "<b>Every question, extracted.</b> Including the ones in appendix schedules that get missed.",
-  s3l2Rich: "<b>Arabic read natively.</b> Not translated first, then read.",
-  s3l3Rich:
-    "<b>Local-content weighting detected.</b> On every tender, whether or not you hold a certificate.",
+  s3l2Rich: "<b>Arabic or English, native or scanned.</b> Straight from the tender pack.",
+  s3l3Rich: "<b>Every fact shows its page.</b> A person confirms the details before anything is decided.",
 
   // screen B · checklist
-  cl1: "Questions found",
-  cl2: "Mandatory documents",
+  cl1: "Reference",
+  cl2: "Buyer",
   cl3: "Submission deadline",
-  cl4: "Classification grade required",
-  cl5: "Local-content weighting",
-  c3: "RFP-2026-0148 · 87 pp",
-  cl1v: "64",
-  cl2v: "11",
-  cl3v: "18 Sep",
-  cl4v: "C",
-  cl5v: "20%",
+  cl4: "Questions found",
+  c3: "Found so far · 87 pages",
+  cl1v: "RFP-2026-0148",
+  cl2v: "QatarEnergy LNG",
+  cl3v: "18 Sep 2026",
+  cl4v: "64",
 
   // 4 · drafting
   s4eb: "The drafting",
@@ -85,44 +82,71 @@ const en = {
     "<b>Nothing is invented.</b> If there is no source, the field stays empty and says so.",
   s4l2Rich:
     "<b>Every answer names its source.</b> The bid it came from, the section, and the date it was submitted.",
-  s4l3Rich:
-    "<b>Your knowledge base grows.</b> Every submitted bid becomes source material for the next one.",
+  s4l3Rich: "<b>Every answer is approved.</b> Each question has an owner, and a reviewer approves it or sends it back.",
 
   // screen D · drafted answers
-  c4: "Drafted · 61 of 64",
+  c4: "Questions · 12 of 64 approved",
   q1: "Describe your HSE management system and incident record.",
   a1: "Al Rayyan operates an ISO 45001 certified HSE system audited annually by Bureau Veritas. Zero lost-time incidents across 412,000 site hours since 2023.",
   ci1: "Ashghal RFP-2025-0092",
   sr1: "Source: section 4.2, submitted 11 Mar 2025, awarded.",
   q3: "Provide your ICV certificate number and issuing body.",
-  a3: "No source found. Qeema will not fill this. Answer it yourself or attach the certificate.",
-  ci3: "No citation",
+  a3: "No source in your library for this question. Qeema leaves it empty.",
+  ci3: "No source, yours to write",
 
   // 5 · verdict
   s5eb: "The position",
   s5h: "Find out before you spend the week, not after.",
-  s5p: "Most firms learn a tender was closed to them by losing it. Qeema resolves your standing against the tender on the day it lands, and says so plainly when the answer is no.",
+  s5p: "Qeema checks the tender against your company profile as of the deadline, and says plainly when the answer is likely no. Then your Bid Lead decides whether to bid.",
 
   // screen C · verdict toggle
-  c5: "Position",
+  c5: "Details · Can you bid?",
   vt1: "No certificate",
   vt2: "Certified",
-  v1h: "Not eligible to bid",
-  v1p: "This tender requires a valid Tawteen ICV certificate at submission. You do not hold one.",
-  v2h: "Two open tenders you can bid",
-  tr1: "Ashghal road maintenance, Al Wakrah",
-  tr1d: "Closes 24 Sep",
-  tg1: "No cert",
-  tr2: "Ministry of Municipality landscaping",
-  tr2d: "Closes 2 Oct",
-  tg2: "SME set-aside",
-  v3h: "Eligible, and above the weighting threshold",
-  v3p: "Local content carries 20% of the award score here. Your current position clears it with margin.",
-  g1: "Claimable on this bid",
-  g2: "Price preference on Qatari-content goods in your BOQ",
-  g3: "Performance guarantee relief available to firms your size",
-  g4: "Reduced classification fee at renewal",
-  g5: "Each has to be asserted in the submission. Qeema writes the clause that asserts it.",
+  vq: "Can you bid on this tender?",
+  v1f: "“Likely not eligible” is a flag, not a ruling. The buyer decides compliance.",
+  ev: "Evidence",
+  evE: "Energy sector",
+  evEv: "Yes",
+  evC: "Your ICV certificate",
+  evC0: "None",
+  evC1: "34% · valid to 31 Mar 2027",
+  dq0: "Bid anyway?",
+  dNo: "Don't bid",
+  dYes: "Bid anyway",
+  dq1: "Nothing stops you bidding.",
+  dStart: "Start the bid",
+  v1h: "Likely not eligible, unconfirmed",
+  v1p: "No ICV certificate on file.",
+  v3h: "ICV requirement met",
+  v3p: "Your certificate is valid to 31 Mar 2027, past the deadline. The tender states no minimum score.",
+
+  // 5b · ICV advisor
+  s6eb: "ICV advisor",
+  s6h: "See your likely ICV score, and what would raise it.",
+  s6p: "Enter what you spend and Qeema estimates your score with Tawteen's published formula.",
+  s6cRich: "<b>From the beginning of 2027, you will need an ICV certificate to bid on government tenders.</b> Qeema helps you get there: see where your score stands, what would raise it, and the steps to get certified.",
+  s6cSrc: "Ministry of Finance notice on Monaqasat. Exact date to be announced.",
+  s6l1Rich: "<b>Your numbers, the official formula.</b> Compared with the average for your industry.",
+  s6l2Rich: "<b>What would raise it most.</b> Changes ranked by points, the ones that cost nothing extra first.",
+  s6l3Rich: "<b>Always an estimate.</b> Your official score comes from your certifier.",
+
+  // screen E · ICV estimate (mirrors IcvSimulator.vue in the app)
+  c6: "ICV",
+  ie1: "Your likely ICV",
+  ie2: "Below the Construction average of 38%. Here is what would close the gap.",
+  ieAvg: "Construction avg 38%",
+  ieOut: "Outside",
+  ieIn: "In Qatar",
+  ieOutQ: "Outside Qatar",
+  ia: "What would raise it most, for you",
+  ad1: "Move QAR 100,000 of imports to a supplier in Qatar",
+  ad1s: "Money spent abroad counts for nothing. At a supplier near the industry average, it starts counting.",
+  ad1t: "No extra spend",
+  ad2: "Spend QAR 100,000 more on training in Qatar",
+  ad2s: "New spend counts in full, but it also adds to your total cost.",
+  ad2t: "New spend",
+  ie3: "Estimate from Tawteen's published formula. Your official score comes from your certifier.",
 
   // 6b · confidentiality
   cfeb: "Confidentiality",
@@ -154,7 +178,7 @@ const en = {
     "<b>No.</b> Qeema is not an assessor and holds no delegated authority. Any estimate it shows is labelled unaudited, and the certifying body remains the only source of a real score.",
   fq2: "We are not in the energy sector. Does local content apply to us?",
   fa2Rich:
-    "<b>Yes.</b> Non-energy bidders sit inside Cabinet Resolution 11 of 2022, administered by the Ministry of Finance, rather than the Tawteen ICV regime run by QatarEnergy. That is a different regime, not an exemption.",
+    "<b>Yes, from 2027.</b> According to the Ministry of Finance, from the beginning of 2027 you need an ICV certificate to bid on government tenders, whatever your sector. Without one you can still bid on private tenders. Qeema shows where your score stands and the steps to get certified.",
   fq3: "Where do the drafted answers come from?",
   fa3Rich:
     "From your own previous submissions. Every drafted sentence names the bid it came from, the section, and the date. Where there is no source, Qeema leaves the field empty and says so.",
@@ -167,14 +191,13 @@ const en = {
 
   // 8 · final
   fh: "Put one tender through it.",
-  fp: "Take a document you already lost or already won. Qeema will tell you what it found, what it would have drafted, and what you were entitled to.",
+  fp: "Take a tender you already submitted. Qeema shows you what it found and what it would have drafted.",
   fcta2: "Talk about bid volume",
 
   // footer
-  fn1: "Coverage",
+  fn1: "How it works",
   fn5: "Confidentiality",
   fn2: "Get started",
-  fn4: "Privacy",
   city: "Doha, Qatar",
 
   // a11y — never rendered as visible text

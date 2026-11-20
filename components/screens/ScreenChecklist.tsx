@@ -12,7 +12,6 @@ export function ScreenChecklist({ t }: { t: Messages }) {
     { label: t.cl2, count: t.cl2v },
     { label: t.cl3, count: t.cl3v },
     { label: t.cl4, count: t.cl4v },
-    { label: t.cl5, count: t.cl5v },
   ];
 
   return (

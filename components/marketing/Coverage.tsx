@@ -1,32 +1,34 @@
 import type { Messages } from "@/messages";
 
 /**
- * 2 · coverage strip.
+ * 2 · how it works. Four short steps under the hero.
  *
- * Stands in for testimonials. The spec omits those because there are zero
- * customers, and inventing quotes is fabrication — real instrument coverage
- * carries the credibility instead.
+ * Replaced the regulation list ("Reads against"), which read as legal and
+ * intimidating. Kept to four steps and one line each so it scans in seconds.
  */
 export function Coverage({ t }: { t: Messages }) {
-  const instruments = [
-    { name: t.s2a, who: t.s2ai },
-    { name: t.s2b, who: t.s2bi },
-    { name: t.s2c, who: t.s2ci },
-    { name: t.s2d, who: t.s2di },
+  const steps = [
+    { h: t.p1h, p: t.p1p },
+    { h: t.p2h, p: t.p2p },
+    { h: t.p3h, p: t.p3p },
+    { h: t.p4h, p: t.p4p },
   ];
 
   return (
-    <section className="band band--tight strip" id="coverage">
+    <section className="band band--tight steps" id="how">
       <div className="wrap">
         <div className="lb">{t.s2lb}</div>
-        <div className="strip-row">
-          {instruments.map((it) => (
-            <span key={it.name}>
-              {it.name}
-              <i>{it.who}</i>
-            </span>
+        <ol className="steps-row">
+          {steps.map((s, i) => (
+            <li key={s.h}>
+              <span className="n" aria-hidden="true">
+                {i + 1}
+              </span>
+              <b>{s.h}</b>
+              <span className="d">{s.p}</span>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );

@@ -7,6 +7,7 @@ import { FaqSection } from "@/components/marketing/FaqSection";
 import { FinalCta } from "@/components/marketing/FinalCta";
 import { Footer } from "@/components/marketing/Footer";
 import { Hero } from "@/components/marketing/Hero";
+import { IcvAdvisor } from "@/components/marketing/IcvAdvisor";
 import { Position } from "@/components/marketing/Position";
 import { Reads } from "@/components/marketing/Reads";
 import { isLocale } from "@/lib/i18n";
@@ -35,6 +36,7 @@ export default async function LandingPage({
       <Reads t={t} />
       <Drafting t={t} />
       <Position t={t} />
+      <IcvAdvisor t={t} />
       <Confidentiality t={t} />
       <FaqSection t={t} />
       <FinalCta t={t} />
